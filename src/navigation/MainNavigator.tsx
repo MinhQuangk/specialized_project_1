@@ -4,12 +4,12 @@ import { View, Text } from 'react-native';
 import TabNavigator from './TabNavigator';
 
 const MainNavigator = () => {
-    const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator screenOptions={{
-        headerShown:false
+      headerShown: false
     }}>
-        <Stack.Screen name='Main' component ={TabNavigator}/>
+      <Stack.Screen name='Main' component={TabNavigator} />
     </Stack.Navigator>
   );
 };
