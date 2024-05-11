@@ -1,10 +1,13 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text>This is a functional component!</Text>
+      <Text>Home</Text>
+      <Button title ='Logout' onPress={async() => await AsyncStorage.clear }></Button>
+
     </View>
   );
 };
