@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Home from "./screens/home";
-import Quiz from "./screens/quiz";
-import Result from "./screens/results";
+import { SplashScreen } from "./src/screens";
+import MainNavigator from "./src/navigation/MainNavigator";
+import AuthNavigator from "./src/navigation/AuthNavigator";
 import { NavigationContainer } from "@react-navigation/native";
-import MyStack from "./navigation";
+
+
 const App = () =>{
-  return(
-        <NavigationContainer>
-            <MyStack/>
-        </NavigationContainer>
-  )
+
+  const [isShowSplash,SetIsShowSpalsh]=useState(true);
+  useEffect(()=>{
+    const timeout = setTimeout(()=>{SetIsShowSpalsh(false)},1500)
+
+    return ()=> clearTimeout(timeout)
+  },[])
+  return (
+    isShowSplash ? <SplashScreen/> : <NavigationContainer><AuthNavigator/></NavigationContainer>
+  );
 }
 export default App
 
-const styles = StyleSheet.create({
-  container:{
-    paddingTop: 40 ,
-    paddingHorizontal:16, 
-  },
-})
+
+
