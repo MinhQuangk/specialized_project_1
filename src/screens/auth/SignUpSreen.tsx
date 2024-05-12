@@ -11,13 +11,23 @@ import { ButtonComponent, RowComponent, SpaceComponent, TextComponent } from '..
 import { fontFamilies } from '../../constants/fontFamilies';
 import SocialLogin from './components/SocialLogin';
 
+const initValue = {
+  usename: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
 
-const LoginSreen = ({navigation}:any) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassWord] = useState('')
-  const [isRemember, setIsRemember] = useState(true)
+const SignUpSreen = ({ navigation }: any) => {
+  const [values, setValues] = useState(initValue)
+  const handleChangeValue = (key: string, value: string) => {
+    const data: any = { ...values }
+    data[`${key}`] = value;
+    setValues(data)
+  }
+
   return (
-    <ContainerComponent isImageBackground isScroll>
+    <ContainerComponent isImageBackground isScroll title='' back>
       <SectionComponent styles={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -37,40 +47,35 @@ const LoginSreen = ({navigation}:any) => {
       <SectionComponent>
         <TextComponent size={24} font={fontFamilies.medium} text='Sign in' />
         <SpaceComponent height={21} />
-        <InputComponent value={email} onChange={val => setEmail(val)}
-          placeholder='Email'
+        <InputComponent value={values.usename} onChange={val => handleChangeValue('username', val)}
+          placeholder='Username'
           allowClear
           affix={<Sms size={22} color={appColors.gray} />} />
-        <InputComponent value={password} onChange={val => setPassWord(val)}
-          placeholder='Password'
+        <InputComponent value={values.email} onChange={val => handleChangeValue('email', val)}
+          placeholder='Email  '
           isPassword
           allowClear
           affix={<Lock size={22} color={appColors.gray} />} />
-        <RowComponent justify='space-between'>
-          <RowComponent onPress={() => setIsRemember(!isRemember)}>
-            <Switch
-              trackColor={{ true: appColors.primary }}
-              thumbColor={appColors.white}
-              value={isRemember}
-              onChange={() => setIsRemember(!isRemember)}
-            />
-            <TextComponent text='Remember me' />
-          </RowComponent>
-          <ButtonComponent text='Forgot password?'
-            onPress={()=>navigation.navigate('ForgotPassword')}
-            type='text'
-          />
-        </RowComponent>
+        <InputComponent value={values.email} onChange={val => handleChangeValue('email', val)}
+          placeholder='Email  '
+          isPassword
+          allowClear
+          affix={<Lock size={22} color={appColors.gray} />} />
+        <InputComponent value={values.email} onChange={val => handleChangeValue('email', val)}
+          placeholder='Email  '
+          isPassword
+          allowClear
+          affix={<Lock size={22} color={appColors.gray} />} />
       </SectionComponent>
-      <SpaceComponent height={16}/>
+      <SpaceComponent height={16} />
       <SectionComponent>
-        <ButtonComponent text='LOGIN ' type='primary'  />
+        <ButtonComponent text='SIGN UP ' type='primary' />
       </SectionComponent>
-          <SocialLogin/>
+      <SocialLogin />
       <SectionComponent>
         <RowComponent justify='center'>
-            <TextComponent text="Dont't have an account ?"></TextComponent>
-            <ButtonComponent type='link' text='SignUp'onPress={()=>navigation.navigate('SignUpScreen')}/>
+          <TextComponent text="Already have account ?"></TextComponent>
+          <ButtonComponent type='link' text='SignIn' onPress={() => navigation.navigate("LoginScreen")} />
         </RowComponent>
       </SectionComponent>
     </ContainerComponent>
@@ -78,4 +83,4 @@ const LoginSreen = ({navigation}:any) => {
   );
 };
 
-export default LoginSreen;
+export default SignUpSreen;
