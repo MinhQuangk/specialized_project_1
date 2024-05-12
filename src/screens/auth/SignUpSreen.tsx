@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, Button, Image, Switch } from 'react-native';
 import { globalStyles } from '../../styles/globalStyles';
 import InputComponent from '../../components/InputComponets';
-import { Lock, Sms } from 'iconsax-react-native';
+import { Lock, Sms, User } from 'iconsax-react-native';
 import { appColors } from '../../constants/appColors';
 import ContainerComponent from '../../components/ContainerComponent';
 import SectionComponent from '../../components/SectionComponent';
@@ -50,12 +50,11 @@ const SignUpSreen = ({ navigation }: any) => {
         <InputComponent value={values.usename} onChange={val => handleChangeValue('username', val)}
           placeholder='Username'
           allowClear
-          affix={<Sms size={22} color={appColors.gray} />} />
+          affix={<User size={22} color={appColors.gray} />} />
         <InputComponent value={values.email} onChange={val => handleChangeValue('email', val)}
           placeholder='Email  '
-          isPassword
           allowClear
-          affix={<Lock size={22} color={appColors.gray} />} />
+          affix={<Sms size={22} color={appColors.gray} />} />
         <InputComponent value={values.email} onChange={val => handleChangeValue('email', val)}
           placeholder='Email  '
           isPassword

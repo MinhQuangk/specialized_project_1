@@ -10,12 +10,23 @@ import SectionComponent from '../../components/SectionComponent';
 import { ButtonComponent, RowComponent, SpaceComponent, TextComponent } from '../../components';
 import { fontFamilies } from '../../constants/fontFamilies';
 import SocialLogin from './components/SocialLogin';
+import AuthenticationAPI from '../../apis/authApi';
 
 
 const LoginSreen = ({navigation}:any) => {
   const [email, setEmail] = useState('')
   const [password, setPassWord] = useState('')
   const [isRemember, setIsRemember] = useState(true)
+
+  const handleLogin = async()=>{
+    const api = `http://192.168.2.108:3001/hello`
+    try {
+      const res = await AuthenticationAPI.HandleAuthentication('/hello')
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <ContainerComponent isImageBackground isScroll>
       <SectionComponent styles={{
@@ -49,7 +60,7 @@ const LoginSreen = ({navigation}:any) => {
         <RowComponent justify='space-between'>
           <RowComponent onPress={() => setIsRemember(!isRemember)}>
             <Switch
-              trackColor={{ true: appColors.primary }}
+              trackColor={{ true: appColors.primary ,false: appColors.gray}}
               thumbColor={appColors.white}
               value={isRemember}
               onChange={() => setIsRemember(!isRemember)}
@@ -64,7 +75,7 @@ const LoginSreen = ({navigation}:any) => {
       </SectionComponent>
       <SpaceComponent height={16}/>
       <SectionComponent>
-        <ButtonComponent text='LOGIN ' type='primary'  />
+        <ButtonComponent onPress={handleLogin} text='LOGIN ' type='primary'  />
       </SectionComponent>
           <SocialLogin/>
       <SectionComponent>
